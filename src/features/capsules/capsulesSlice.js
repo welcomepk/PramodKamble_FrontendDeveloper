@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = [];
 
+const initialState = []
 
 const capsulesSlice = createSlice({
     name: 'capsules',
@@ -11,6 +11,7 @@ const capsulesSlice = createSlice({
             return action.payload;
         },
     },
+
 });
 
 export const { setCapsules } = capsulesSlice.actions;

@@ -5,10 +5,10 @@ import SpacexData from './components/SpacexData'
 
 
 function App() {
-  return <main className=''>
+  return <>
     <Banner />
     <SpacexData dataType={'capsules'} />
-  </main>
+  </>
 }
 
 export default App
