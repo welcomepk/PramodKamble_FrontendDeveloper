@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GrClose } from "react-icons/gr";
 
 const DetailsModal = ({ capsule, onClose }) => {
 
+    useEffect(() => {
+        let isMounted = true;
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const response = await axios.get(`https://api.spacexdata.com/v4/${dataType}`);
+                if (isMounted)
+                    dispatch(setCapsules(response.data));
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false)
+            }
+        };
+        fetchData();
+
+        return () => {
+            isMounted = false;
+        }
+    }, [])
     const handleClose = e => {
         if (e.target.id === 'overlay') onClose()
     }
@@ -11,7 +31,7 @@ const DetailsModal = ({ capsule, onClose }) => {
     return (
         <div className='fixed inset-0 grid place-items-center modal-overlay' id='overlay' onClick={handleClose}>
             <div className="bg-white text-left grid gap-4 font-inter relative card-details text-slate-950 font-medium text-base min-w-[600px] rounded-md px-4 pt-8 pb-4">
-                <button onClick={() => onClose()} className='absolute top-3 right-3'><GrClose /></button>
+                <button onClick={() => onClose()} className='absolute top-4 right-4 rounded-full transition-all hover:bg-slate-200 p-2'><GrClose /></button>
                 <div className="flex justify-start gap-2">
                     <p className={'flex border flex-col text-left shadow-sm text-slate-800 text-xs font-semibold font-inter py-2 px-3 rounded-md '}>
                         <span className='text-slate-400 text-xs font-normal font-inter'>Type</span>

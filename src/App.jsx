@@ -1,14 +1,19 @@
 
-import { nanoid } from "nanoid"
+import React, { Suspense } from 'react';
 import Banner from "./components/Banner"
-import SpacexData from './components/SpacexData'
+import { SpacexDataFallback } from "./components/Fallbacks"
+// import SpacexData from './components/SpacexData'
+const SpacexData = React.lazy(() => import('./components/SpacexData'));
 
 
 function App() {
   return <>
     <Banner />
-    <SpacexData dataType={'capsules'} />
+    <Suspense fallback={<SpacexDataFallback />}>
+      <SpacexData dataType={'capsules'} />
+    </Suspense>
   </>
 }
+
 
 export default App

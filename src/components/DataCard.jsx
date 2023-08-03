@@ -4,10 +4,17 @@ const DataCard = ({ capsule, handleCapsuleSelect }) => {
 
     const bg_tag_color = capsule.status === 'active' ? 'bg-slate-50' : capsule.status == 'retired' ? 'bg-zinc-50 text-zinc-800' : 'bg-red-50 text-red-800';
     return (
-        <div onClick={() => handleCapsuleSelect(capsule)} className={`card min-h-[200px] p-4 w-auto bg-slate-100 hover:bg-slate-200 hover:cursor-pointer transition-all shadow-slate-900`}>
+        <div onClick={() => handleCapsuleSelect(capsule)} className={`card min-h-[200px] p-4 w-auto bg-slate-100 hover:bg-slate-50 hover:cursor-pointer transition-all shadow-slate-900`}>
             <div className="flex justify-between mb-4">
-                <span className='bg-slate-50 shadow-sm text-slate-800 text-xs font-semibold font-inter py-1 px-2 rounded-md'>{capsule.type}</span>
-                <span className='bg-slate-50 shadow-sm text-slate-800 text-xs font-semibold font-inter py-1 px-2 rounded-md'>{capsule.serial}</span>
+                <p className={'flex flex-col text-left  text-slate-800 text-xs font-semibold font-inter py-2 px-3 rounded-md '}>
+                    <span className='text-slate-400 text-xs font-normal font-inter'>Type</span>
+                    <span className='bg-slate-50 shadow-sm text-slate-800 text-xs font-semibold font-inter py-1 px-2 rounded-md'>{capsule.type}</span>
+                </p>
+                <p className={'flex flex-col text-left  text-slate-800 text-xs font-semibold font-inter py-2 px-3 rounded-md '}>
+                    <span className='text-slate-400 text-xs font-normal font-inter'>Serial</span>
+                    <span className='bg-slate-50 shadow-sm text-slate-800 text-xs font-semibold font-inter py-1 px-2 rounded-md'>{capsule.serial}</span>
+                </p>
+
             </div>
             <h1 className="text-lg mb-4 font-semibold text-left font-inter text-slate-900">{capsule.last_update || "No details"}</h1>
 
